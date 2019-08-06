@@ -11,3 +11,4 @@ insert into employee_details(emp_Id,employee_Name,company_Id,company_Name) value
 insert into employee_details(emp_Id,employee_Name,company_Id,company_Name) values ('INFI1','Akhil','FB','FACEBOOK');
 insert into employee_details(emp_Id,employee_Name,company_Id,company_Name) values ('DEF','DEFAULT','DEF','DEFAULT');
 
+insert into coupon(emp_Id,company_Id,product_Id,Coupon_Code,activated) values('INFI1','INFI','1','BUYTWOFREEONE',true);

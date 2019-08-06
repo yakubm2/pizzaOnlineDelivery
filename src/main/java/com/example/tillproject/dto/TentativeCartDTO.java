@@ -5,17 +5,18 @@ public class TentativeCartDTO {
 	String employeeName;
 	
 	String companyId;
+	
 	String companyName;
 	
 	String productId;
+	
 	String productName;
 	
 	String price;
 	
 	String totalPrice;
 	
-	
-	
+	int quantity;
 	public String getTotalPrice() {
 		return totalPrice;
 	}
@@ -25,7 +26,7 @@ public class TentativeCartDTO {
 	}
 
 
-	int quantity;
+	;
 	
 	public String getEmpId() {
 		return empId;
