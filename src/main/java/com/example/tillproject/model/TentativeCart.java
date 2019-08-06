@@ -22,10 +22,10 @@ public class TentativeCart {
 	String productName;
 	
 	float price;
+	float totalPrice;
 	
     int quantity;
-    float totalPrice;
-	public int getQuantity() {
+    public int getQuantity() {
 		return quantity;
 	}
 

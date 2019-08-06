@@ -25,6 +25,7 @@ public class TentativeCartService {
 	}
 	public void addToTentativeCartList(TentativeCartDTO cartItems) {
 			TentativeCart tentativeCart=modelMapper.map(cartItems,TentativeCart.class);
+			tentativeCart.setTotalPrice(cartItems.getQuantity()*Float.parseFloat(cartItems.getPrice()));
      		tentativeCartRepository.save(tentativeCart);
 	}
 	public Map<String,Object> getTentativeCartItems(String empId){
@@ -33,7 +34,7 @@ public class TentativeCartService {
 		Map<String, Object> cartList=new TreeMap<String, Object>();
 		cartList.put("itemList", items);
 		for(TentativeCartDTO data:items) {
-			PricingTotal=Float.parseFloat(data.getPrice())+PricingTotal;
+			PricingTotal=Float.parseFloat(data.getTotalPrice())+PricingTotal;
 		}
 		cartList.put("Total", PricingTotal);
 		

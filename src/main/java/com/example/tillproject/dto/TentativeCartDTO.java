@@ -12,6 +12,19 @@ public class TentativeCartDTO {
 	
 	String price;
 	
+	String totalPrice;
+	
+	
+	
+	public String getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(String totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+
 	int quantity;
 	
 	public String getEmpId() {
