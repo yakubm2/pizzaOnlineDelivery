@@ -39,19 +39,9 @@ public class CouponServiceImpl implements CouponService {
 	@Override
 	public Map<String, Object> calculateDiscount(Map<String, Object> cartList, String couponUse) {
 		// TODO Auto-generated method stub
-		List<TentativeCartDTO> items=new ArrayList();
-		for(String key:cartList.keySet()) {
-			
-			if(key.equalsIgnoreCase("itemList")) {
-				items=(List<TentativeCartDTO>) cartList.get(key);
-				
-				//logic for iterating items in the cart and according to couponCode requirement modifyTotal
-				
-				
-			}
-			
-			
-		}
+		List<TentativeCartDTO> items=new ArrayList<TentativeCartDTO>();
+		items=(List<TentativeCartDTO>) cartList.get("itemList");
+//				//logic for iterating items in the cart and according to couponCode requirement modifyTotal
 		return cartList;
 	}
 
