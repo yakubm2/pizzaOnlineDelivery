@@ -1,6 +1,8 @@
 package com.example.tillproject.services;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +18,7 @@ public class CouponServiceImpl implements CouponService {
 
 	@Autowired
 	CouponDetailsRepository couponDetails;
-	@Override
-	public void calculateDiscount(List<TentativeCartDTO> items, Coupon coupon) {
+	private void calculateDiscount(List<TentativeCartDTO> items, Coupon coupon) {
 		// TODO Auto-generated method stub
 		CouponDetails details=couponDetails.findByCouponCode(coupon.getCouponCode());
 		boolean discount=false;
@@ -34,6 +35,24 @@ public class CouponServiceImpl implements CouponService {
 			}
 			
 		}
+	}
+	@Override
+	public Map<String, Object> calculateDiscount(Map<String, Object> cartList, String couponUse) {
+		// TODO Auto-generated method stub
+		List<TentativeCartDTO> items=new ArrayList();
+		for(String key:cartList.keySet()) {
+			
+			if(key.equalsIgnoreCase("itemList")) {
+				items=(List<TentativeCartDTO>) cartList.get(key);
+				
+				//logic for iterating items in the cart and according to couponCode requirement modifyTotal
+				
+				
+			}
+			
+			
+		}
+		return cartList;
 	}
 
 }

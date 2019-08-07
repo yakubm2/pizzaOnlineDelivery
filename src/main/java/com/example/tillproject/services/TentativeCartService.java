@@ -65,7 +65,7 @@ public class TentativeCartService {
 		CouponUse couponUse=couponUseRepository.findAllByempIdId(empId);
 		
 		cartList.put("CouponAdded",couponUse);
-	//	couponService.calculateDiscount(items, couponList);
+		cartList=couponService.calculateDiscount(cartList, couponUse.getCouponCode());
 		
 		return cartList;
 		

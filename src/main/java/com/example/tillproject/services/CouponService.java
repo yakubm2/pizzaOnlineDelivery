@@ -1,12 +1,9 @@
 package com.example.tillproject.services;
 
-import java.util.List;
-
-import com.example.tillproject.dto.TentativeCartDTO;
-import com.example.tillproject.model.Coupon;
+import java.util.Map;
 
 public interface CouponService {
-void calculateDiscount(List<TentativeCartDTO> items,Coupon coupon);
+Map<String, Object> calculateDiscount(Map<String, Object> cartList,String couponUse);
 
 
 
