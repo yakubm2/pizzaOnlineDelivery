@@ -25,7 +25,10 @@ public class TentativeCart {
 	float totalPrice;
 	
     int quantity;
-    public int getQuantity() {
+    
+    
+   
+	public int getQuantity() {
 		return quantity;
 	}
 

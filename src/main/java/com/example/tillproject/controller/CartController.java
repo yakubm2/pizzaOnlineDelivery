@@ -30,8 +30,8 @@ public class CartController {
 		tentativeCartservice.addToTentativeCartList(cartItem);
 	}
 
-	@PutMapping("/updateTentativeCartList")
-	public void update() {
-		
+	@PostMapping("/addCouponToTentativeCartList")
+	public void addToken(@RequestParam("empId") String empId,@RequestParam("couponCode") String couponCode) {
+		tentativeCartservice.addCouponToTentativeCartItems(empId, couponCode);
 	}
 }
