@@ -54,18 +54,18 @@ public class TentativeCartService {
 		float PricingTotal=0;
 		Map<String, Object> cartList=new TreeMap<String, Object>();
 		cartList.put("itemList", items);
-		HashSet<String> productList=new HashSet<String>();
+		HashSet<String> productIdList=new HashSet<String>();
 		for(TentativeCartDTO data:items) {
-			productList.add(data.getProductId());
+			productIdList.add(data.getProductId());
 			PricingTotal=Float.parseFloat(data.getTotalPrice())+PricingTotal;
 		}
 		cartList.put("Total", PricingTotal);
-		List<Coupon> couponList=getCoupons(empId,productList);
+		List<Coupon> couponList=getCoupons(empId,productIdList);
 		cartList.put("CouponAvailable",couponList);
 		CouponUse couponUse=couponUseRepository.findAllByempIdId(empId);
 		
 		cartList.put("CouponAdded",couponUse);
-		cartList=couponService.calculateDiscount(cartList, couponUse.getCouponCode());
+		cartList=couponService.calculateDiscount(cartList, couponUse.getCouponCode(),productIdList);
 		
 		return cartList;
 		

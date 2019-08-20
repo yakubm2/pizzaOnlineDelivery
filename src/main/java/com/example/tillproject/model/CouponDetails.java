@@ -18,17 +18,40 @@ public class CouponDetails {
 	
 	String description;
 	
-	String type;
+	String discountType;
 	
 	float discountPercentage;
 	
 	int minQuantity;
 	
 	int freeQuantity;
+		
+	long applicableProductId;
+	
+	long offerProductId;
 	
 	@OneToOne
 	Coupon coupon;
 	
+	public long getOfferProductId() {
+		return offerProductId;
+	}
+	public void setOfferProductId(long offerProductId) {
+		this.offerProductId = offerProductId;
+	}
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+	public Coupon getCoupon() {
+		return coupon;
+	}
+	public void setCoupon(Coupon coupon) {
+		this.coupon = coupon;
+	}
+
 	public String getCouponCode() {
 		return couponCode;
 	}
@@ -41,14 +64,20 @@ public class CouponDetails {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
-	}
 	public float getDiscountPercentage() {
 		return discountPercentage;
+	}
+	public String getDiscountType() {
+		return discountType;
+	}
+	public void setDiscountType(String discountType) {
+		this.discountType = discountType;
+	}
+	public long getApplicableProductId() {
+		return applicableProductId;
+	}
+	public void setApplicableProductId(long applicableProductId) {
+		this.applicableProductId = applicableProductId;
 	}
 	public void setDiscountPercentage(float discountPercentage) {
 		this.discountPercentage = discountPercentage;

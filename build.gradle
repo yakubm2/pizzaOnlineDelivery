@@ -30,4 +30,5 @@ dependencies {
 	runtimeOnly 'com.h2database:h2:1.4.193'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	compile group: 'com.asprise.ocr',name: 'java-ocr-api', version: '[15,)'
 }

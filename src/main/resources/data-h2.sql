@@ -12,3 +12,6 @@ insert into employee_details(emp_Id,employee_Name,company_Id,company_Name) value
 insert into employee_details(emp_Id,employee_Name,company_Id,company_Name) values ('DEF','DEFAULT','DEF','DEFAULT');
 
 insert into coupon(emp_Id,company_Id,product_Id,Coupon_Code,activated) values('INFI1','INFI','1','BUYTWOFREEONE',true);
+
+insert into coupon_details(applicable_product_id,offer_product_id,coupon_code,description,discount_percentage,free_quantity,min_quantity,discount_type,coupon_id) 
+values(1,1,'BUYTWOFREEONE','buy two med pizza get one free',0,1,2,'FREEOFFER',1);

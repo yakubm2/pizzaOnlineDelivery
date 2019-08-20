@@ -1,9 +1,11 @@
 package com.example.tillproject.services;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,30 +20,43 @@ public class CouponServiceImpl implements CouponService {
 
 	@Autowired
 	CouponDetailsRepository couponDetails;
-	private void calculateDiscount(List<TentativeCartDTO> items, Coupon coupon) {
+
+	@Autowired
+	ModelMapper modelMapper;
+
+	@Override
+	public Map<String, Object> calculateDiscount(Map<String, Object> cartList, String couponUse,
+			HashSet<String> productIdList) {
 		// TODO Auto-generated method stub
-		CouponDetails details=couponDetails.findByCouponCode(coupon.getCouponCode());
-		boolean discount=false;
-		if(details.getType().equals(CouponType.DISCOUNTOFFER)) {
-			discount=true;
-		}
-		int quantity=0;
-		for(TentativeCartDTO product:items) {
-			if(discount==true) {
-				//logic for discount
+		List<TentativeCartDTO> items = new ArrayList<TentativeCartDTO>();
+		items = (List<TentativeCartDTO>) cartList.get("itemList");
+
+		CouponDetails details = couponDetails.findByCouponCode(couponUse);
+
+		if (details.getDiscountType().equalsIgnoreCase(CouponType.DISCOUNTOFFER.toString())) {
+			if (productIdList.contains(details.getApplicableProductId())) {
+				System.out.println("discounted offer");
+
 			}
-			if(discount=false&&details.getMinQuantity()<=product.getQuantity()) {
-				//logic for quantity
+	
+		} else if (details.getDiscountType().equalsIgnoreCase(CouponType.FREEOFFER.toString())) {
+			if (productIdList.contains(String.valueOf(details.getApplicableProductId()))
+					&& productIdList.contains(String.valueOf(details.getOfferProductId()))) {
+				System.out.println("iterating through list and applying offer");
+				if(details.getApplicableProductId()==details.getOfferProductId()) {
+					items.forEach(data->{
+						System.out.println(String.valueOf(details.getOfferProductId()));
+						if(String.valueOf(details.getOfferProductId()).equalsIgnoreCase(data.getProductId())) {
+							System.out.println("applying offer on"+data.getProductName()+" :: Rate: "+data.getPrice()+" :: "+data.getPrice()+ " :: "+data.getTotalPrice());
+														
+						}
+					});
+				}else {
+					
+				}
 			}
 			
 		}
-	}
-	@Override
-	public Map<String, Object> calculateDiscount(Map<String, Object> cartList, String couponUse) {
-		// TODO Auto-generated method stub
-		List<TentativeCartDTO> items=new ArrayList<TentativeCartDTO>();
-		items=(List<TentativeCartDTO>) cartList.get("itemList");
-//				//logic for iterating items in the cart and according to couponCode requirement modifyTotal
 		return cartList;
 	}
 

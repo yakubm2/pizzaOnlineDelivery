@@ -18,14 +18,22 @@ public class Coupon {
 	String productId;
 	String CouponCode;
 	
-	
+	public CouponDetails getCouponDetails() {
+		return couponDetails;
+	}
+
+	public void setCouponDetails(CouponDetails couponDetails) {
+		this.couponDetails = couponDetails;
+	}
 	boolean activated;
 	
 	@OneToOne
 	CouponDetails couponDetails;
+
 	public boolean isActivated() {
 		return activated;
 	}
+	
 	public void setActivated(boolean activated) {
 		this.activated = activated;
 	}
