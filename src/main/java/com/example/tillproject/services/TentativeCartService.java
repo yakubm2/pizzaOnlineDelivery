@@ -57,16 +57,20 @@ public class TentativeCartService {
 		HashSet<String> productIdList=new HashSet<String>();
 		for(TentativeCartDTO data:items) {
 			productIdList.add(data.getProductId());
-			PricingTotal=Float.parseFloat(data.getTotalPrice())+PricingTotal;
+//			PricingTotal=Float.parseFloat(data.getTotalPrice())+PricingTotal;
 		}
-		cartList.put("Total", PricingTotal);
+//		cartList.put("Total", PricingTotal);
 		List<Coupon> couponList=getCoupons(empId,productIdList);
 		cartList.put("CouponAvailable",couponList);
 		CouponUse couponUse=couponUseRepository.findAllByempIdId(empId);
 		
 		cartList.put("CouponAdded",couponUse);
 		cartList=couponService.calculateDiscount(cartList, couponUse.getCouponCode(),productIdList);
-		
+		for(TentativeCartDTO data:items) {
+//			productIdList.add(data.getProductId());
+			PricingTotal=Float.parseFloat(data.getTotalPrice())+PricingTotal;
+		}
+		cartList.put("Total", PricingTotal);
 		return cartList;
 		
 	}

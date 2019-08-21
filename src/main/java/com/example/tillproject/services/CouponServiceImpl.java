@@ -46,13 +46,19 @@ public class CouponServiceImpl implements CouponService {
 				if(details.getApplicableProductId()==details.getOfferProductId()) {
 					items.forEach(data->{
 						System.out.println(String.valueOf(details.getOfferProductId()));
-						if(String.valueOf(details.getOfferProductId()).equalsIgnoreCase(data.getProductId())) {
+						if((String.valueOf(details.getOfferProductId()).equalsIgnoreCase(data.getProductId()))&&
+								(data.getQuantity()>details.getMinQuantity())) {
 							System.out.println("applying offer on"+data.getProductName()+" :: Rate: "+data.getPrice()+" :: "+data.getPrice()+ " :: "+data.getTotalPrice());
-														
+						    float totalPrice=Float.valueOf(data.getTotalPrice())-(details.getFreeQuantity()*Float.valueOf(data.getPrice()));      							
+							data.setTotalPrice(String.valueOf(totalPrice)) ;
+						}else {
+						     
+							//unable to implement the logic because of low min quantity in data
 						}
 					});
 				}else {
 					
+					//option to search/add extra product from db and recalculate total value
 				}
 			}
 			
